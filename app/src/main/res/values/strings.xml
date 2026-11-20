@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RevisPlan</string>
-    <string name="welcome">Your exam subjects</string>
+
+    <!-- main screen -->
+    <string name="hours_per_day_label">Study hours per day</string>
+    <string name="hours_per_day_hint">e.g. 4.5</string>
+    <string name="save">Save</string>
+    <string name="subjects_title">My subjects</string>
+    <string name="add_subject">Add subject</string>
+    <string name="no_subjects">No subjects yet. Add one or load the demo data from the menu.</string>
+    <string name="subject_details">Exam: %1$s · Difficulty %2$d/5 · Coef %3$d</string>
+    <string name="days_left">%1$d days left</string>
+    <string name="exam_passed">Exam passed</string>
+    <string name="exam_tomorrow">Exam tomorrow</string>
+    <string name="hours_saved">Study hours saved: %1$s h/day</string>
+    <string name="error_hours">Enter a number of hours between 0.5 and 16 (steps of 0.5)</string>
+    <string name="delete_subject_title">Delete subject</string>
+    <string name="delete_subject_message">Delete \"%1$s\" and its study sessions?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="subject_deleted">Subject deleted</string>
+    <string name="tip_subjects">Tap a subject to edit it, long press to delete it.</string>
+
+    <!-- add subject screen -->
+    <string name="title_add_subject">New subject</string>
+    <string name="title_edit_subject">Edit subject</string>
+    <string name="subject_name_label">Subject name</string>
+    <string name="subject_name_hint">e.g. Mathematics</string>
+    <string name="exam_date_label">Exam date</string>
+    <string name="pick_date">Pick a date</string>
+    <string name="difficulty_label">Difficulty (1 = easy, 5 = very hard)</string>
+    <string name="coefficient_label">Coefficient (1 to 10)</string>
+    <string name="coefficient_hint">e.g. 3</string>
+    <string name="save_subject">Save subject</string>
+    <string name="error_name">Enter the subject name</string>
+    <string name="error_name_exists">A subject with this name already exists</string>
+    <string name="error_date">Pick the exam date</string>
+    <string name="error_date_past">The exam date must be after today</string>
+    <string name="error_difficulty">Choose a difficulty between 1 and 5</string>
+    <string name="error_coefficient">Enter a coefficient between 1 and 10</string>
+    <string name="subject_saved">Subject saved</string>
 </resources>
