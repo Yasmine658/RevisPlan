@@ -2,6 +2,8 @@ package tn.tp.revisplan
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -62,6 +64,42 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         rafraichirListe()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_demo -> {
+            confirmer(R.string.demo_title, R.string.demo_message) {
+                DonneesDemo.charger(stockage)
+                editHeures.setText(formaterHeures(stockage.chargerHeuresParJour()))
+                Toast.makeText(this, R.string.demo_loaded, Toast.LENGTH_SHORT).show()
+                rafraichirListe()
+            }
+            true
+        }
+        R.id.action_effacer -> {
+            confirmer(R.string.clear_title, R.string.clear_message) {
+                stockage.toutEffacer()
+                editHeures.setText(formaterHeures(stockage.chargerHeuresParJour()))
+                Toast.makeText(this, R.string.data_cleared, Toast.LENGTH_SHORT).show()
+                rafraichirListe()
+            }
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
+
+    private fun confirmer(titre: Int, message: Int, action: () -> Unit) {
+        AlertDialog.Builder(this)
+            .setTitle(titre)
+            .setMessage(message)
+            .setPositiveButton(R.string.yes) { _, _ -> action() }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     private fun rafraichirListe() {

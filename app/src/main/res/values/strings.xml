@@ -71,4 +71,15 @@
     <string name="progress_delay_exam_passed">Delay: %1$s h (exam passed)</string>
     <string name="progress_on_track">On track, no delay</string>
     <string name="progress_exam">Exam: %1$s</string>
+
+    <!-- menu -->
+    <string name="menu_demo">Load demo data</string>
+    <string name="menu_clear">Clear all data</string>
+    <string name="demo_title">Load demo data</string>
+    <string name="demo_message">This replaces your subjects and your plan with example data. Continue?</string>
+    <string name="demo_loaded">Demo data loaded (plan started 3 days ago)</string>
+    <string name="clear_title">Clear all data</string>
+    <string name="clear_message">Delete all subjects and the study plan?</string>
+    <string name="data_cleared">All data cleared</string>
+    <string name="yes">Yes</string>
 </resources>
