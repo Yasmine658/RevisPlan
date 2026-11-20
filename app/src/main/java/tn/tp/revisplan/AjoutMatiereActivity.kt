@@ -108,6 +108,7 @@ class AjoutMatiereActivity : AppCompatActivity() {
         val index = matieres.indexOfFirst { it.id == id }
         if (index >= 0) matieres[index] = matiere else matieres.add(matiere)
         stockage.sauverMatieres(matieres)
+        if (stockage.planExiste()) stockage.mettreAJourPlan()
 
         Toast.makeText(this, R.string.subject_saved, Toast.LENGTH_SHORT).show()
         finish()

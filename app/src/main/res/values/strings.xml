@@ -40,4 +40,23 @@
     <string name="error_difficulty">Choose a difficulty between 1 and 5</string>
     <string name="error_coefficient">Enter a coefficient between 1 and 10</string>
     <string name="subject_saved">Subject saved</string>
+
+    <!-- planning screen -->
+    <string name="generate_plan">Generate plan</string>
+    <string name="title_planning">Study plan</string>
+    <string name="no_plan">No study plan yet. Go back and tap \"Generate plan\".</string>
+    <string name="error_no_subject">Add at least one subject with an exam after today</string>
+    <string name="plan_generated">Plan generated: %1$d sessions</string>
+    <string name="planning_summary">%1$s h per day</string>
+    <string name="today_header">Today · %1$s</string>
+    <string name="day_total">%1$s h</string>
+    <string name="session_hours">%1$s h</string>
+    <string name="status_done">Done</string>
+    <string name="status_missed">Missed</string>
+    <string name="status_todo">To do</string>
+    <string name="status_catch_up">Catch-up</string>
+    <string name="error_future_session">You can only mark sessions of today or earlier</string>
+    <string name="session_marked_done">Done! Plan updated</string>
+    <string name="session_marked_undone">Marked as not done, plan updated</string>
+    <string name="unknown_subject">Unknown subject</string>
 </resources>

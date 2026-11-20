@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AjoutMatiereActivity::class.java))
         }
 
+        findViewById<Button>(R.id.btnGenererPlan).setOnClickListener { genererPlan() }
+
         listeMatieres.setOnItemClickListener { _, _, position, _ ->
             val intent = Intent(this, AjoutMatiereActivity::class.java)
             intent.putExtra(AjoutMatiereActivity.EXTRA_MATIERE_ID, matieres[position].id)
@@ -78,7 +80,22 @@ class MainActivity : AppCompatActivity() {
     private fun sauverHeures() {
         val heures = lireHeures() ?: return
         stockage.sauverHeuresParJour(heures)
+        if (stockage.planExiste()) stockage.mettreAJourPlan()
         Toast.makeText(this, getString(R.string.hours_saved, formaterHeures(heures)), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun genererPlan() {
+        val heures = lireHeures() ?: return
+        val aujourdhui = DateUtils.aujourdhui()
+        if (stockage.chargerMatieres().none { it.dateExamen > aujourdhui }) {
+            Toast.makeText(this, R.string.error_no_subject, Toast.LENGTH_LONG).show()
+            return
+        }
+        stockage.sauverHeuresParJour(heures)
+        val seances = stockage.mettreAJourPlan(aujourdhui)
+        val aVenir = seances.count { it.jour >= aujourdhui && !it.faite }
+        Toast.makeText(this, getString(R.string.plan_generated, aVenir), Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, PlanningActivity::class.java))
     }
 
     private fun confirmerSuppression(matiere: Matiere) {
@@ -88,6 +105,7 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton(R.string.delete) { _, _ ->
                 stockage.sauverMatieres(stockage.chargerMatieres().filter { it.id != matiere.id })
                 stockage.sauverSeances(stockage.chargerSeances().filter { it.matiereId != matiere.id })
+                if (stockage.planExiste()) stockage.mettreAJourPlan()
                 Toast.makeText(this, R.string.subject_deleted, Toast.LENGTH_SHORT).show()
                 rafraichirListe()
             }

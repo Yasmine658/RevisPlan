@@ -79,4 +79,10 @@
         android:text="@string/no_subjects"
         android:textColor="@color/text_secondary"
         android:textSize="@dimen/text_normal" />
+
+    <Button
+        android:id="@+id/btnGenererPlan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/generate_plan" />
 </LinearLayout>

@@ -40,6 +40,16 @@ class Stockage(context: Context) {
         return id
     }
 
+    fun planExiste(): Boolean = chargerSeances().isNotEmpty()
+
+    // rebuilds the remaining days of the plan and saves it
+    fun mettreAJourPlan(aujourdhui: Long = DateUtils.aujourdhui()): List<Seance> {
+        val planificateur = PlanificateurRevision(chargerHeuresParJour())
+        val seances = planificateur.recalculer(chargerMatieres(), chargerSeances(), aujourdhui)
+        sauverSeances(seances)
+        return seances
+    }
+
     fun toutEffacer() {
         prefs.edit().clear().apply()
     }
