@@ -3,6 +3,7 @@ package tn.tp.revisplan
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class PlanningActivity : AppCompatActivity() {
@@ -27,6 +28,11 @@ class PlanningActivity : AppCompatActivity() {
         listeSeances.emptyView = findViewById(R.id.txtAucunPlan)
         adapter = SeanceAdapter(this, lignes, nomsMatieres)
         listeSeances.adapter = adapter
+
+        listeSeances.setOnItemClickListener { _, _, position, _ ->
+            val ligne = lignes.getOrNull(position)
+            if (ligne is LignePlanning.Session) basculerSeance(ligne.seance)
+        }
 
         // load now so the ListView can restore its scroll position after a rotation
         charger()
@@ -66,5 +72,27 @@ class PlanningActivity : AppCompatActivity() {
         val aujourdhui = DateUtils.aujourdhui()
         val index = lignes.indexOfFirst { it is LignePlanning.Jour && it.jour >= aujourdhui }
         if (index > 0) listeSeances.setSelection(index)
+    }
+
+    private fun basculerSeance(seance: Seance) {
+        if (seance.jour > DateUtils.aujourdhui()) {
+            Toast.makeText(this, R.string.error_future_session, Toast.LENGTH_SHORT).show()
+            return
+        }
+        val seances = stockage.chargerSeances()
+        val index = seances.indexOfFirst { it.id == seance.id }
+        if (index < 0) return
+        val faite = !seances[index].faite
+        seances[index] = seances[index].copy(faite = faite)
+        stockage.sauverSeances(seances)
+
+        // keep the scroll position while the list is rebuilt
+        val premier = listeSeances.firstVisiblePosition
+        val haut = listeSeances.getChildAt(0)?.top ?: 0
+        charger()
+        listeSeances.setSelectionFromTop(premier, haut)
+
+        val message = if (faite) R.string.session_marked_done else R.string.session_marked_undone
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

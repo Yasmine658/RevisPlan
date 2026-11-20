@@ -47,7 +47,7 @@
     <string name="no_plan">No study plan yet. Go back and tap \"Generate plan\".</string>
     <string name="error_no_subject">Add at least one subject with an exam after today</string>
     <string name="plan_generated">Plan generated: %1$d sessions</string>
-    <string name="planning_summary">%1$s h per day</string>
+    <string name="planning_summary">%1$s h per day · tap a session of today or before to mark it done</string>
     <string name="today_header">Today · %1$s</string>
     <string name="day_total">%1$s h</string>
     <string name="session_hours">%1$s h</string>
