@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#3949AB</color>
+    <color name="primary_dark">#283593</color>
+    <color name="accent">#FF7043</color>
+    <color name="text_secondary">#666666</color>
+    <color name="done">#2E7D32</color>
+    <color name="missed">#C62828</color>
+    <color name="catch_up">#EF6C00</color>
+    <color name="day_header_bg">#E8EAF6</color>
+</resources>
