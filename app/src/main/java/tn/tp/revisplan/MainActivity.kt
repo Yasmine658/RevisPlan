@@ -44,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnGenererPlan).setOnClickListener { genererPlan() }
+        findViewById<Button>(R.id.btnProgression).setOnClickListener {
+            startActivity(Intent(this, ProgressionActivity::class.java))
+        }
 
         listeMatieres.setOnItemClickListener { _, _, position, _ ->
             val intent = Intent(this, AjoutMatiereActivity::class.java)

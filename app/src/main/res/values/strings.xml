@@ -59,4 +59,16 @@
     <string name="session_marked_done">Done! Plan updated</string>
     <string name="session_marked_undone">Marked as not done, plan updated</string>
     <string name="unknown_subject">Unknown subject</string>
+
+    <!-- progress screen -->
+    <string name="progress">Progress</string>
+    <string name="title_progress">Progress per subject</string>
+    <string name="no_progress">No subjects yet.</string>
+    <string name="progress_total">Total: %1$s h done out of %2$s h planned</string>
+    <string name="progress_hours">Planned: %1$s h · Completed: %2$s h</string>
+    <string name="progress_percent">%1$d%%</string>
+    <string name="progress_delay">Delay: %1$s h (moved to the next days)</string>
+    <string name="progress_delay_exam_passed">Delay: %1$s h (exam passed)</string>
+    <string name="progress_on_track">On track, no delay</string>
+    <string name="progress_exam">Exam: %1$s</string>
 </resources>

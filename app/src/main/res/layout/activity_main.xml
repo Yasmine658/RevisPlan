@@ -80,9 +80,23 @@
         android:textColor="@color/text_secondary"
         android:textSize="@dimen/text_normal" />
 
-    <Button
-        android:id="@+id/btnGenererPlan"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/generate_plan" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnGenererPlan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/generate_plan" />
+
+        <Button
+            android:id="@+id/btnProgression"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/progress" />
+    </LinearLayout>
 </LinearLayout>
