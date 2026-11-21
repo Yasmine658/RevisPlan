@@ -78,6 +78,8 @@ class AjoutMatiereActivity : AppCompatActivity() {
             cal.get(java.util.Calendar.MONTH),
             cal.get(java.util.Calendar.DAY_OF_MONTH)
         )
+        // exams must be after today
+        dialog.datePicker.minDate = DateUtils.versCalendar(DateUtils.aujourdhui() + 1).timeInMillis
         dialog.show()
     }
 
