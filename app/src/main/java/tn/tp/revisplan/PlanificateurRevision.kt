@@ -28,7 +28,8 @@ class PlanificateurRevision(heuresParJour: Double) {
 
         for (jour in aujourdhui until actives.maxOf { it.dateExamen }) {
             val faitesDuJour = gardees.filter { it.jour == jour && it.faite }
-            var libres = creneauxParJour - versCreneaux(faitesDuJour.sumOf { it.heures })
+            var libres = creneauxParJour -
+                versCreneaux(faitesDuJour.filter { it.rattrapage }.sumOf { it.heures })
             // no session on or after the exam day
             val duJour = actives.filter { it.dateExamen > jour }
 
@@ -44,12 +45,14 @@ class PlanificateurRevision(heuresParJour: Double) {
                 nouvelles += Seance(prochainId++, matiere.id, jour, n * CRENEAU, rattrapage = true)
             }
 
-            val candidates = duJour.filter { m ->
-                faitesDuJour.none { it.matiereId == m.id && !it.rattrapage }
-            }
-            val parts = repartir(libres, candidates.map { poids(it, jour) })
-            candidates.forEachIndexed { i, matiere ->
-                if (parts[i] > 0) nouvelles += Seance(prochainId++, matiere.id, jour, parts[i] * CRENEAU)
+            // split the whole day, a session already done keeps its place
+            // so the other sessions of the day don't move
+            val parts = repartir(libres, duJour.map { poids(it, jour) })
+            duJour.forEachIndexed { i, matiere ->
+                val dejaFaite = faitesDuJour.any { it.matiereId == matiere.id && !it.rattrapage }
+                if (parts[i] > 0 && !dejaFaite) {
+                    nouvelles += Seance(prochainId++, matiere.id, jour, parts[i] * CRENEAU)
+                }
             }
         }
         return trier(gardees + nouvelles)
